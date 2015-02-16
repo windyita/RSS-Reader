@@ -47,6 +47,7 @@
     [self configureView];
     NSURL *homepage = [NSURL URLWithString:@"http://www.google.com"];
     [self.webView loadRequest:[NSURLRequest requestWithURL:homepage]];
+     [self configureView];
     
 }
 
