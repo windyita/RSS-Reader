@@ -13,5 +13,9 @@
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
+@property (strong, nonatomic) NSMutableDictionary* URLArray;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+
 @end
 
