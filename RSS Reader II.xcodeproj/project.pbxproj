@@ -17,6 +17,7 @@
 		ED5644B21A92A3C500C7C56A /* RSS_Reader_IITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5644B11A92A3C500C7C56A /* RSS_Reader_IITests.m */; };
 		ED5644C31A92AA5B00C7C56A /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5644C21A92AA5B00C7C56A /* TableViewCell.m */; };
 		ED5644C61A92AACA00C7C56A /* SharedNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5644C51A92AACA00C7C56A /* SharedNetworking.m */; };
+		ED7978C81A9A6D9400E397E9 /* BookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7978C71A9A6D9400E397E9 /* BookmarkTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		ED5644C21A92AA5B00C7C56A /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		ED5644C41A92AACA00C7C56A /* SharedNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedNetworking.h; sourceTree = "<group>"; };
 		ED5644C51A92AACA00C7C56A /* SharedNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedNetworking.m; sourceTree = "<group>"; };
+		ED7978C61A9A6D9400E397E9 /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
+		ED7978C71A9A6D9400E397E9 /* BookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 				ED5644C21A92AA5B00C7C56A /* TableViewCell.m */,
 				ED5644C41A92AACA00C7C56A /* SharedNetworking.h */,
 				ED5644C51A92AACA00C7C56A /* SharedNetworking.m */,
+				ED7978C61A9A6D9400E397E9 /* BookmarkTableViewController.h */,
+				ED7978C71A9A6D9400E397E9 /* BookmarkTableViewController.m */,
 			);
 			path = "RSS Reader II";
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			files = (
 				ED5644C61A92AACA00C7C56A /* SharedNetworking.m in Sources */,
 				ED5644981A92A3C500C7C56A /* AppDelegate.m in Sources */,
+				ED7978C81A9A6D9400E397E9 /* BookmarkTableViewController.m in Sources */,
 				ED56449B1A92A3C500C7C56A /* MasterViewController.m in Sources */,
 				ED5644951A92A3C500C7C56A /* main.m in Sources */,
 				ED5644C31A92AA5B00C7C56A /* TableViewCell.m in Sources */,
@@ -432,6 +438,7 @@
 				ED5644B71A92A3C500C7C56A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED5644B81A92A3C500C7C56A /* Build configuration list for PBXNativeTarget "RSS Reader IITests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +447,7 @@
 				ED5644BA1A92A3C500C7C56A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

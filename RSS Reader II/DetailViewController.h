@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BookmarkTableViewController.h"
 
 @interface DetailViewController : UIViewController
 
@@ -15,6 +16,14 @@
 
 @property (strong, nonatomic) NSMutableDictionary* URLArray;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+@property (strong, nonatomic) NSDictionary *item;
+
+
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addFavButton;
+- (IBAction)addFav:(id)sender;
+
 
 
 @end
