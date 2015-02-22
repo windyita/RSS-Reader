@@ -50,11 +50,11 @@
                                                          self.links = dictionary[@"responseData"][@"feed"][@"entries"];
                                                          
                                                          for (NSDictionary *link in self.links){
-                                                             NSLog(@"DownloadeData:%@\n%@\n%@\n%@",
-                                                                   link[@"link"],
-                                                                   link[@"contentSnippet"],
-                                                                   link[@"publisheDate"],
-                                                                   link[@"title"]);
+//                                                             NSLog(@"DownloadeData:%@\n%@\n%@\n%@",
+//                                                                   link[@"link"],
+//                                                                   link[@"contentSnippet"],
+//                                                                   link[@"publisheDate"],
+//                                                                   link[@"title"]);
                                                              [self insertNewObject:link];
                                                          }
                                                          dispatch_async(dispatch_get_main_queue(), ^{

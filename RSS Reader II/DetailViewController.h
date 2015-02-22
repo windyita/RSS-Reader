@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BookmarkTableViewController.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <BookmarkToWebViewDelegate>
 
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;

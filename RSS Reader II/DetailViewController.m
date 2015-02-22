@@ -63,8 +63,17 @@
     if ([[segue identifier] isEqualToString:@"popoverSeque"]) {
         UINavigationController *NavigationC = (UINavigationController*)segue.destinationViewController;
         BookmarkTableViewController *BookmarkTC = (BookmarkTableViewController*)NavigationC.topViewController;
+        NSLog(@"Hi1");
         BookmarkTC.delegate = self;
+        NSLog(@"Hi2");
     }
+}
+
+- (void)bookmark:(id)sender sendsURL:(NSURL *)url{
+    //change the detailItem to selected item in the popover menu
+    self.URLArray = [[NSMutableDictionary alloc] initWithDictionary:(NSDictionary*)sender];
+    self.navigationItem.title = self.URLArray[@"title"];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (IBAction)addFav:(id)sender {

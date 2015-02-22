@@ -18,8 +18,12 @@
 
 @property (weak, nonatomic) id<BookmarkToWebViewDelegate> delegate;
 
+//@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+//- (IBAction)edit:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 - (IBAction)edit:(id)sender;
+
 
 
 @end

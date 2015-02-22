@@ -17,7 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     self.numOfBookmarks = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"bookmarks"]];
+    NSLog(@"%d",self.numOfBookmarks.count);
     
     if (self.numOfBookmarks) {
         for (int i = 0; i < self.numOfBookmarks.count; i++) {
@@ -36,11 +38,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.numOfBookmarks.count;
+        return self.numOfBookmarks.count;
 }
 
 
@@ -54,26 +56,36 @@
     return cell;
 }
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *url = self.numOfBookmarks[indexPath.row][@"link"];
+    //send selected item back
+    [self.delegate bookmark:self.numOfBookmarks[indexPath.row] sendsURL:[NSURL URLWithString:url]];
+    //dismiss the bookmark view
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
-/*
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        [self.numOfBookmarks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        
+        //update userdefault
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:self.numOfBookmarks forKey:@"bookmarks"];
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -100,5 +112,19 @@
 */
 
 - (IBAction)edit:(id)sender {
+    if ([self.tableView isEditing]) {
+        // If the tableView is already in edit mode, turn it off. Also change the title of the button to reflect the intended verb (‘Edit’, in this case).
+        [self.tableView setEditing:NO animated:YES];
+        
+        [self.editButton setTitle:@"Edit"];
+        
+    }else {
+        // Turn on edit mode
+        [self.tableView setEditing:YES animated:YES];
+        
+        [self.editButton setTitle:@"Done"];
+    }
 }
+
 @end
+

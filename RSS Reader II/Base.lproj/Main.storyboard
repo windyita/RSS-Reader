@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="FZe-Yd-pbt">
                             <connections>
-                                <segue destination="1nh-zP-oRU" kind="popoverPresentation" popoverAnchorBarButtonItem="FZe-Yd-pbt" id="fQr-Ag-4WT">
+                                <segue destination="1nh-zP-oRU" kind="popoverPresentation" identifier="popoverSeque" popoverAnchorBarButtonItem="FZe-Yd-pbt" id="fQr-Ag-4WT">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -67,12 +67,12 @@
             </objects>
             <point key="canvasLocation" x="694" y="114"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Bookmark List-->
         <scene sceneID="5Jy-j5-172">
             <objects>
-                <tableViewController id="dLC-Ri-1Xr" sceneMemberID="viewController">
+                <tableViewController id="dLC-Ri-1Xr" customClass="BookmarkTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Kpa-Ue-9iR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -103,10 +103,20 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Edit" id="uEE-uc-I1L"/>
+                        <barButtonItem title="Edit" width="246" id="uEE-uc-I1L">
+                            <connections>
+                                <action selector="edit:" destination="dLC-Ri-1Xr" id="1VO-ik-L4Z"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Mw8-Rl-CDB"/>
+                    <navigationItem key="navigationItem" title="Bookmark List" id="Mw8-Rl-CDB"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="500" height="600"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="500"/>
+                    <connections>
+                        <outlet property="editButton" destination="uEE-uc-I1L" id="NRK-lj-mfK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63L-oO-RqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

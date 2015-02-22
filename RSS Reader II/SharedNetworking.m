@@ -48,9 +48,9 @@
                                      
                                      [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                      // handle response
-                                     NSLog(@"Data:%@",data);
-                                     NSLog(@"Response:%@",response);
-                                     NSLog(@"Error:%@",[error localizedDescription]);
+//                                     NSLog(@"Data:%@",data);
+//                                     NSLog(@"Response:%@",response);
+//                                     NSLog(@"Error:%@",[error localizedDescription]);
                                      
                                      NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
                                      if (httpResp.statusCode == 200) {
@@ -58,11 +58,11 @@
                                          
                                          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
                                          
-                                         NSLog(@"DownloadeData:%@",dict);
+//                                         NSLog(@"DownloadeData:%@",dict);
                                          
                                          successCompletion(dict,nil);
                                      } else {
-                                         NSLog(@"Fail Not 200:");
+//                                         NSLog(@"Fail Not 200:");
                                          dispatch_async(dispatch_get_main_queue(), ^{
                                              if (failureCompletion) failureCompletion();
                                          });
