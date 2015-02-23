@@ -44,21 +44,29 @@
 
 - (void)downloadData {
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* mode = [defaults objectForKey:@"night_mode_preference"];
+    if ([mode integerValue] != 1) {
+        self.tableView.backgroundColor = [UIColor whiteColor];
+        self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+        self.refreshControl.tintColor = [UIColor purpleColor];
+    }
+    else {
+        self.tableView.backgroundColor = [UIColor blackColor];
+        [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
+        self.refreshControl.tintColor = [UIColor whiteColor];
+    }
     
     [[SharedNetworking sharedSharedNetworking] getFeedForURL:nil
                                                      success:^(NSDictionary *dictionary, NSError *error) {
                                                          self.links = dictionary[@"responseData"][@"feed"][@"entries"];
                                                          
                                                          for (NSDictionary *link in self.links){
-//                                                             NSLog(@"DownloadeData:%@\n%@\n%@\n%@",
-//                                                                   link[@"link"],
-//                                                                   link[@"contentSnippet"],
-//                                                                   link[@"publisheDate"],
-//                                                                   link[@"title"]);
                                                              [self insertNewObject:link];
                                                          }
                                                          dispatch_async(dispatch_get_main_queue(), ^{
                                                              [self.tableView reloadData];
+                                                             [self.dismissdele dismissView:self sendObject:YES];
                                                          });
                                                          
                                                      } failure:^{
@@ -69,6 +77,7 @@
                                                                                cancelButtonTitle:@"OK"
                                                                                otherButtonTitles:nil];
                                                          [alert show];                                                     }];
+   
     if (self.refreshControl.refreshing) {
         [self.refreshControl endRefreshing];
     }
@@ -122,12 +131,26 @@
     static NSString *CellIdentifier = @"Cell";
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    //    NSDictionary *issue = [self.objects objectAtIndex:indexPath.row];
-    //
-    //    cell.title.text = [issue objectForKey:@"title"];
-    //    cell.date.text = [issue objectForKey:@"publishedDate"];
-    //    return cell;
-    
+    //night mode
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* mode = [defaults objectForKey:@"night_mode_preference"];
+    cell.title.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    cell.date.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.content.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    if ([mode integerValue] == 1) {
+        cell.backgroundColor = [UIColor blackColor];
+        cell.title.textColor = [UIColor whiteColor];
+        cell.date.textColor = [UIColor whiteColor];
+        cell.content.textColor = [UIColor whiteColor];
+    }
+    else {
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.title.textColor = [UIColor blackColor];
+        cell.date.textColor = [UIColor blackColor];
+        cell.content.textColor = [UIColor blackColor];
+        
+    }
+   
     self.issue = [self.objects objectAtIndex:indexPath.row];
     cell.title.text = [self.issue objectForKey:@"title"];
     cell.content.text = [self.issue objectForKey:@"contentSnippet"];
@@ -139,7 +162,6 @@
     [datef setDateFormat:@"MM/dd/yyyy"];
     cell.date.text = [datef stringFromDate:date];
     
-    //cell.cellDate.text = [self.issue objectForKey:@"publishedDate"];
     return cell;
     
 }

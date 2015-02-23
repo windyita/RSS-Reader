@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BookmarkTableViewController.h"
+#import "MasterViewController.h"
+#import "STSession.h"
+#import <Social/Social.h>
 
-@interface DetailViewController : UIViewController <BookmarkToWebViewDelegate>
+@interface DetailViewController : UIViewController <BookmarkToWebViewDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
@@ -19,10 +22,17 @@
 
 @property (strong, nonatomic) NSDictionary *item;
 
+@property (weak, nonatomic) IBOutlet UIImageView *star;
 
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addFavButton;
 - (IBAction)addFav:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actind;
+@property UIViewController * splash;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tweetButton;
+- (IBAction)tweet:(id)sender;
 
 
 

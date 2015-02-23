@@ -18,6 +18,9 @@
 		ED5644C31A92AA5B00C7C56A /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5644C21A92AA5B00C7C56A /* TableViewCell.m */; };
 		ED5644C61A92AACA00C7C56A /* SharedNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5644C51A92AACA00C7C56A /* SharedNetworking.m */; };
 		ED7978C81A9A6D9400E397E9 /* BookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7978C71A9A6D9400E397E9 /* BookmarkTableViewController.m */; };
+		ED7978CD1A9BAC5000E397E9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED7978CC1A9BAC5000E397E9 /* Settings.bundle */; };
+		ED7978D51A9BD35100E397E9 /* STSession.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7978D41A9BD35100E397E9 /* STSession.m */; };
+		ED7978D71A9BDA1E00E397E9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7978D61A9BDA1E00E397E9 /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,10 @@
 		ED5644C51A92AACA00C7C56A /* SharedNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedNetworking.m; sourceTree = "<group>"; };
 		ED7978C61A9A6D9400E397E9 /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
 		ED7978C71A9A6D9400E397E9 /* BookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewController.m; sourceTree = "<group>"; };
+		ED7978CC1A9BAC5000E397E9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		ED7978D31A9BD35100E397E9 /* STSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSession.h; sourceTree = "<group>"; };
+		ED7978D41A9BD35100E397E9 /* STSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSession.m; sourceTree = "<group>"; };
+		ED7978D61A9BDA1E00E397E9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7978D71A9BDA1E00E397E9 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +83,7 @@
 		ED5644861A92A3C500C7C56A = {
 			isa = PBXGroup;
 			children = (
+				ED7978D61A9BDA1E00E397E9 /* Social.framework */,
 				ED5644911A92A3C500C7C56A /* RSS Reader II */,
 				ED5644AE1A92A3C500C7C56A /* RSS Reader IITests */,
 				ED5644901A92A3C500C7C56A /* Products */,
@@ -109,6 +118,8 @@
 				ED5644C51A92AACA00C7C56A /* SharedNetworking.m */,
 				ED7978C61A9A6D9400E397E9 /* BookmarkTableViewController.h */,
 				ED7978C71A9A6D9400E397E9 /* BookmarkTableViewController.m */,
+				ED7978D31A9BD35100E397E9 /* STSession.h */,
+				ED7978D41A9BD35100E397E9 /* STSession.m */,
 			);
 			path = "RSS Reader II";
 			sourceTree = "<group>";
@@ -116,6 +127,7 @@
 		ED5644921A92A3C500C7C56A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED7978CC1A9BAC5000E397E9 /* Settings.bundle */,
 				ED5644931A92A3C500C7C56A /* Info.plist */,
 				ED5644941A92A3C500C7C56A /* main.m */,
 			);
@@ -219,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7978CD1A9BAC5000E397E9 /* Settings.bundle in Resources */,
 				ED5644A11A92A3C500C7C56A /* Main.storyboard in Resources */,
 				ED5644A61A92A3C500C7C56A /* LaunchScreen.xib in Resources */,
 				ED5644A31A92A3C500C7C56A /* Images.xcassets in Resources */,
@@ -240,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED5644C61A92AACA00C7C56A /* SharedNetworking.m in Sources */,
+				ED7978D51A9BD35100E397E9 /* STSession.m in Sources */,
 				ED5644981A92A3C500C7C56A /* AppDelegate.m in Sources */,
 				ED7978C81A9A6D9400E397E9 /* BookmarkTableViewController.m in Sources */,
 				ED56449B1A92A3C500C7C56A /* MasterViewController.m in Sources */,
@@ -372,6 +386,7 @@
 				INFOPLIST_FILE = "RSS Reader II/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -382,6 +397,7 @@
 				INFOPLIST_FILE = "RSS Reader II/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

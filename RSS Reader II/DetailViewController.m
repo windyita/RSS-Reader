@@ -30,18 +30,53 @@
 //    if (self.detailItem) {
 //        self.detailDescriptionLabel.text = [self.detailItem description];
 //    }
+    if(!_URLArray){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableDictionary * dic = (NSMutableDictionary *)[defaults objectForKey:@"last"];
+        if(dic){
+            _URLArray = dic;
+        }
+    }
     if (_URLArray) {
         
         self.addFavButton.enabled = YES;
         
-        self.navigationItem.title = self.URLArray[@"title"];
-        
-        NSURL *url = [[NSURL alloc] initWithString:self.URLArray[@"link"]];
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        [self.webView loadRequest:request];
-    }
-    
+                self.navigationItem.title = self.URLArray[@"title"];
+            NSURL * url = [NSURL URLWithString:_URLArray[@"link"]];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            [self.webView setScalesPageToFit:YES];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSMutableDictionary * array = [[NSMutableDictionary alloc]initWithDictionary:_URLArray];
+            [defaults setObject:array forKey:@"last"];
+            NSError* err = nil;
+            NSURL *docs = [[NSFileManager new] URLForDirectory:NSDocumentDirectory
+                                                      inDomain:NSUserDomainMask appropriateForURL:nil
+                                                        create:YES error:&err];
+            
+            NSURL* file = [docs URLByAppendingPathComponent:@"sessions.plist"];
+            NSData* data = [[NSData alloc] initWithContentsOfURL:file];
+            STSession *sess= (STSession *)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            
+            if ([sess.details containsObject:_URLArray]) {
+                self.star.image = [UIImage imageNamed:@"star.png"];
+                [self.view bringSubviewToFront:self.star];
+            }
+            else {
+                self.star.image = nil;
+            }    
 }
+}
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    UIViewController *vc = [[UIViewController alloc] init];
+//    vc.view.backgroundColor = [UIColor greenColor];
+//    [self presentViewController:vc animated:NO completion:^{
+//        NSLog(@"Splash screen is showing");
+//    }];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,6 +87,7 @@
     self.addFavButton.enabled = NO;
      [self configureView];
     
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,12 +97,21 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"popoverSeque"]) {
-        UINavigationController *NavigationC = (UINavigationController*)segue.destinationViewController;
-        BookmarkTableViewController *BookmarkTC = (BookmarkTableViewController*)NavigationC.topViewController;
-        NSLog(@"Hi1");
-        BookmarkTC.delegate = self;
-        NSLog(@"Hi2");
+//        UINavigationController *NavigationC = (UINavigationController*)segue.destinationViewController;
+//        BookmarkTableViewController *BookmarkTC = (BookmarkTableViewController*)NavigationC.topViewController;
+//        BookmarkTC.delegate = self;
+       // [NavigationC.navigationBar setHidden:YES];
+        UINavigationController *nvc = segue.destinationViewController;
+        BookmarkTableViewController *bvc = (BookmarkTableViewController*)nvc.viewControllers.firstObject;
+        bvc.delegate =self;
+        UIPopoverPresentationController *popPC = nvc.popoverPresentationController;
+        popPC.delegate = self;
+        //[nvc.navigationBar setHidden:YES];
     }
+}
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController :(UIPresentationController *)controller{
+    return UIModalPresentationNone;
 }
 
 - (void)bookmark:(id)sender sendsURL:(NSURL *)url{
@@ -98,6 +143,8 @@
         //add a new key-value to detialItem
         [self.URLArray setValue:@"YES" forKey:@"addToFavorite"];
         [newArray addObject:self.URLArray];
+        self.star.image = [UIImage imageNamed:@"star.png"];
+        [self.view bringSubviewToFront:self.star];
     }
     
     [defaults setObject:newArray forKey:@"bookmarks"];
@@ -105,4 +152,12 @@
 }
 
 
+- (IBAction)tweet:(id)sender {
+    if (_URLArray) {
+        SLComposeViewController *tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweet setInitialText:[[NSString alloc] initWithFormat:@"My favorite news, %@ : \n%@", _URLArray[@"title"], _URLArray[@"link"]]];
+        [self presentViewController:tweet animated:YES completion:nil];
+        
+    }
+}
 @end

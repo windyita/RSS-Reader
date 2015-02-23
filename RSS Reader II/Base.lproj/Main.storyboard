@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -31,22 +32,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSM-h1-aru">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSM-h1-aru">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KsT-WQ-vbI">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KsT-WQ-vbI">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Add to favourites" width="582" id="epo-SO-yKk">
+                                    <barButtonItem title="Send a tweet" id="cwy-qY-c4k">
+                                        <connections>
+                                            <action selector="tweet:" destination="JEX-9P-axG" id="cBH-a2-fp9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="64" style="plain" systemItem="fixedSpace" id="chZ-b1-miP"/>
+                                    <barButtonItem title="Add to favourites" id="epo-SO-yKk">
                                         <connections>
                                             <action selector="addFav:" destination="JEX-9P-axG" id="tE0-9L-Lkd"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="V59-hj-VsC">
+                                <rect key="frame" x="554" y="82" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ATb-7I-Klb"/>
+                                    <constraint firstAttribute="width" constant="30" id="pTP-K2-h5J"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="V59-hj-VsC" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="15" id="2Ek-yH-snh"/>
+                            <constraint firstItem="eSM-h1-aru" firstAttribute="bottom" secondItem="GAO-Cl-Wes" secondAttribute="top" id="47g-T8-hEa"/>
+                            <constraint firstAttribute="trailing" secondItem="eSM-h1-aru" secondAttribute="trailing" id="5cS-Xl-dzZ"/>
+                            <constraint firstItem="eSM-h1-aru" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="top" id="FcS-x2-vBq"/>
+                            <constraint firstItem="V59-hj-VsC" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" constant="15" id="GNO-tt-CkV"/>
+                            <constraint firstItem="eSM-h1-aru" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Jih-Y9-f2f"/>
+                            <constraint firstItem="eSM-h1-aru" firstAttribute="trailing" secondItem="KsT-WQ-vbI" secondAttribute="trailing" id="Qaz-cT-Jhn"/>
+                            <constraint firstItem="eSM-h1-aru" firstAttribute="leading" secondItem="KsT-WQ-vbI" secondAttribute="leading" id="ST7-Hx-Vjp"/>
+                            <constraint firstItem="eSM-h1-aru" firstAttribute="bottom" secondItem="KsT-WQ-vbI" secondAttribute="bottom" id="g7H-f8-7AW"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
@@ -60,6 +85,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addFavButton" destination="epo-SO-yKk" id="LI5-Iv-bPg"/>
+                        <outlet property="star" destination="V59-hj-VsC" id="bQA-cM-2Yp"/>
+                        <outlet property="tweetButton" destination="cwy-qY-c4k" id="gt6-Gt-g7b"/>
                         <outlet property="webView" destination="eSM-h1-aru" id="qlT-O4-Hbh"/>
                     </connections>
                 </viewController>
@@ -102,14 +129,14 @@
                             <outlet property="delegate" destination="dLC-Ri-1Xr" id="Pvz-aK-jgp"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Edit" width="246" id="uEE-uc-I1L">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Bookmark List" id="Mw8-Rl-CDB">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" width="62" id="uEE-uc-I1L">
                             <connections>
                                 <action selector="edit:" destination="dLC-Ri-1Xr" id="1VO-ik-L4Z"/>
                             </connections>
                         </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Bookmark List" id="Mw8-Rl-CDB"/>
+                    </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="500" height="600"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -169,25 +196,38 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVc-AG-Qos">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVc-AG-Qos">
                                             <rect key="frame" x="34" y="0.0" width="532" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contents" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeE-8S-Qxn">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contents" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeE-8S-Qxn">
                                             <rect key="frame" x="34" y="54" width="532" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebk-nw-sfi">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebk-nw-sfi">
                                             <rect key="frame" x="34" y="35" width="532" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="BeE-8S-Qxn" firstAttribute="trailing" secondItem="Ebk-nw-sfi" secondAttribute="trailing" id="1GT-Jm-pdw"/>
+                                        <constraint firstItem="Ebk-nw-sfi" firstAttribute="top" secondItem="oVc-AG-Qos" secondAttribute="bottom" constant="6" id="33s-GO-NsA"/>
+                                        <constraint firstItem="BeE-8S-Qxn" firstAttribute="top" secondItem="oVc-AG-Qos" secondAttribute="bottom" constant="25" id="8K5-Lc-bR8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ebk-nw-sfi" secondAttribute="bottom" constant="28" id="GO1-X5-iDR"/>
+                                        <constraint firstItem="BeE-8S-Qxn" firstAttribute="leading" secondItem="Ebk-nw-sfi" secondAttribute="leading" id="GZX-Xl-wuh"/>
+                                        <constraint firstItem="Ebk-nw-sfi" firstAttribute="leading" secondItem="oVc-AG-Qos" secondAttribute="leading" id="OMP-Aq-dRn"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="BeE-8S-Qxn" secondAttribute="bottom" constant="9" id="Rs5-uY-LoJ"/>
+                                        <constraint firstItem="oVc-AG-Qos" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" constant="26" id="dY3-0i-2vx"/>
+                                        <constraint firstItem="oVc-AG-Qos" firstAttribute="trailing" secondItem="Ebk-nw-sfi" secondAttribute="trailing" id="kGI-Ag-n8Z"/>
+                                        <constraint firstItem="oVc-AG-Qos" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="top" id="smL-F7-7HG"/>
+                                        <constraint firstItem="Ebk-nw-sfi" firstAttribute="centerX" secondItem="37f-cq-3Eg" secondAttribute="centerX" id="wSI-AH-Z9A"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -226,6 +266,9 @@
             <point key="canvasLocation" x="-40" y="120"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" width="256" height="256"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GIo-R1-koI"/>
     </inferredMetricsTieBreakers>
